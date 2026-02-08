@@ -1,1 +1,37 @@
 # Somthing-special-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be Mine?</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1>Hey <span id="crushName"></span> 💖</h1>
+<p>I really like you… 💌</p>
+
+<div id="question1">
+  <button onclick="yesClick()">Yes! 💖</button>
+  <button id="noBtn" onclick="noClick()">No 😅</button>
+</div>
+
+<div id="followup" class="hidden">
+  <p class="message-box" id="yesMessage"></p>
+  <button onclick="whyMe()">Why me? 💖</button>
+</div>
+
+<div id="finalMessage" class="hidden">
+  <p class="message-box" id="whyMessage"></p>
+</div>
+
+<img id="popupImg" src="assets/popup.gif" alt="Popup GIF">
+
+<audio id="bgMusic" loop>
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<script src="js/script.js"></script>
+</body>
+</html>
