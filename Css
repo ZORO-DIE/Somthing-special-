@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+:root {
+  --crush-name: "Your Crush";
+  --bg-gradient-start: #ffe6f0;
+  --bg-gradient-end: #ffb3d1;
+  --primary-color: #ff0066;
+  --button-color: #ff66b2;
+  --button-hover-scale: 1.1;
+  --yes-message: "Yay! I knew you'd make my day! 😍";
+  --why-message: "Because you’re amazing and make everything brighter! 🌟";
+}
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--primary-color);
+  overflow-x: hidden;
+  position: relative;
+}
+
+h1 {
+  margin-top: 50px;
+  font-size: 3em;
+  font-family: 'Pacifico', cursive;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  margin: 20px;
+  cursor: pointer;
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  transition: transform 0.2s;
+  position: relative;
+}
+
+button:hover {
+  transform: scale(var(--button-hover-scale));
+}
+
+.hidden { display: none; }
+
+.confetti, .heart {
+  position: absolute;
+  top: -50px;
+  animation: drop linear forwards;
+}
+
+@keyframes drop {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+.message-box { margin-top: 30px; font-size: 1.3em; }
+
+#noBtn { position: relative; transition: all 0.3s ease; }
+
+#popupImg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s;
+  z-index: 10;
+  width: 250px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px var(--button-color);
+}
