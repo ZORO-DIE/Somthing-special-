@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be Mine?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+  /* === CUSTOM SETTINGS START === */
+  :root {
+    --crush-name: "THE GREAT ENTITY";
+    --bg-gradient-start: #ffe6f0;
+    --bg-gradient-end: #ffb3d1;
+    --primary-color: #ff0066;
+    --button-color: #ff66b2;
+    --button-hover-scale: 1.1;
+    --music-url: "https://www.bensound.com/bensound-music/bensound-romantic.mp3";
+    --popup-gif: "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
+    --yes-message: "Yay! I knew you'd make my day! 😍";
+    --why-message: "Because you’re amazing and make everything brighter! 🌟";
+  }
+  /* === CUSTOM SETTINGS END === */
+
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--primary-color);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  h1 {
+    margin-top: 50px;
+    font-size: 3em;
+    font-family: 'Pacifico', cursive;
+  }
+
+  p {
+    font-size: 1.5em;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin: 20px;
+    cursor: pointer;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    transition: transform 0.2s;
+    position: relative;
+  }
+
+  button:hover {
+    transform: scale(var(--button-hover-scale));
+  }
+
+  .hidden { display: none; }
+
+  .confetti, .heart {
+    position: absolute;
+    top: -50px;
+    animation: drop linear forwards;
+  }
+
+  @keyframes drop {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+  }
+
+  .message-box {
+    margin-top: 30px;
+    font-size: 1.3em;
+  }
+
+  #noBtn { position: relative; transition: all 0.3s ease; }
+
+  #popupImg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s;
+    z-index: 10;
+    width: 250px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px var(--button-color);
+  }
+
+</style>
+</head>
+<body>
+
+<h1>Hey <span id="ENTITY"></span> 💖</h1>
+<p>I really like you… 💌</p>
+
+<div id="question1">
+  <button onclick="yesClick()">Yes! 💖</button>
+  <button id="noBtn" onclick="noClick()">No 😅</button>
+</div>
+
+<div id="followup" class="hidden">
+  <p class="message-box" id="yesMessage"></p>
+  <button onclick="whyMe()">Why me? 💖</button>
+</div>
+
+<div id="finalMessage" class="hidden">
+  <p class="message-box" id="whyMessage"></p>
+</div>
+
+<img id="popupImg" alt="Popup GIF">
+
+<audio id="bgMusic" loop></audio>
+
+<script>
+  // Apply custom settings
+  document.getElementById('crushName').textContent = getComputedStyle(document.documentElement).getPropertyValue('--crush-name').trim();
+  document.getElementById('popupImg').src = getComputedStyle(document.documentElement).getPropertyValue('--popup-gif').trim();
+  document.getElementById('bgMusic').src = getComputedStyle(document.documentElement).getPropertyValue('--music-url').trim();
+  document.getElementById('yesMessage').textContent = getComputedStyle(document.documentElement).getPropertyValue('--yes-message').trim();
+  document.getElementById('whyMessage').textContent = getComputedStyle(document.documentElement).getPropertyValue('--why-message').trim();
+
+  // Confetti & Hearts
+  function createConfetti() {
+    for (let i = 0; i < 50; i++) {
+      let conf = document.createElement('div');
+      conf.classList.add('confetti');
+      conf.textContent = '💖';
+      conf.style.left = Math.random() * 100 + 'vw';
+      conf.style.fontSize = (20 + Math.random() * 30) + 'px';
+      conf.style.animationDuration = (2 + Math.random() * 2) + 's';
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 3000);
+    }
+  }
+
+  function createHearts() {
+    setInterval(() => {
+      let heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💘';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, 500);
+  }
+
+  createHearts();
+
+  function yesClick() {
+    createConfetti();
+    document.getElementById('question1').classList.add('hidden');
+    document.getElementById('followup').classList.remove('hidden');
+    document.getElementById('popupImg').style.transform = 'translate(-50%, -50%) scale(1)';
+    document.getElementById('bgMusic').play();
+  }
+
+  function noClick() {
+    alert("Haha! I knew you'd be tempted 😏");
+  }
+
+  const noBtn = document.getElementById('noBtn');
+  noBtn.addEventListener('mouseenter', () => {
+    const x = Math.random() * 60 - 30;
+    const y = Math.random() * 60 - 30;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  function whyMe() {
+    document.getElementById('finalMessage').classList.remove('hidden');
+  }
+</script>
+
+</body>
+  </html>
